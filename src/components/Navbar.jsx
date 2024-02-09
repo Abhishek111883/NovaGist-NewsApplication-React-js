@@ -70,10 +70,10 @@ export default class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0  ">
-                <li className="nav-item">
+                <li className="nav-item ">
                   <Link
                     key="home"
-                    className="nav-link itemsinnavbar active "
+                    className="nav-link itemsinnavbar active fw-bold"
                     aria-current="page"
                     to="/"
                   >
@@ -83,7 +83,8 @@ export default class Navbar extends Component {
                 <li className="nav-item">
                   <Link
                     key="about"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold  "
+                    id="navlist"
                     to="/about"
                   >
                     About
@@ -95,7 +96,7 @@ export default class Navbar extends Component {
                   onMouseLeave={this.handleMouseLeave}
                 >
                   <a
-                    className="nav-link itemsinnavbar dropdown-toggle "
+                    className="nav-link itemsinnavbar dropdown-toggle  fw-bold"
                     href="#"
                     id="navbarDropdown"
                     role="button"
@@ -124,7 +125,8 @@ export default class Navbar extends Component {
                 <li className="nav-item mx-1 navitem">
                   <Link
                     key="business"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold"
+                    id="navlist"
                     to="/business"
                   >
                     Business
@@ -133,7 +135,8 @@ export default class Navbar extends Component {
                 <li className="nav-item mx-1 navitem">
                   <Link
                     key="entertainment"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold   "
+                    id="navlist"
                     to="/entertainment"
                   >
                     Entertainment
@@ -142,7 +145,8 @@ export default class Navbar extends Component {
                 <li className="nav-item mx-1 navitem">
                   <Link
                     key="health"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold   "
+                    id="navlist"
                     to="/health"
                   >
                     Health
@@ -151,7 +155,8 @@ export default class Navbar extends Component {
                 <li className="nav-item mx-1 navitem">
                   <Link
                     key="science"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold   "
+                    id="navlist"
                     to="/science"
                   >
                     Science
@@ -160,7 +165,8 @@ export default class Navbar extends Component {
                 <li className="nav-item mx-1 navitem">
                   <Link
                     key="sports"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold  "
+                    id="navlist"
                     to="/sports"
                   >
                     Sports
@@ -169,7 +175,8 @@ export default class Navbar extends Component {
                 <li className="nav-item mx-1 navitem">
                   <Link
                     key="technology"
-                    className="nav-link itemsinnavbar  "
+                    className="nav-link itemsinnavbar fw-bold  "
+                    id="navlist"
                     to="/technology"
                   >
                     Technology
@@ -180,7 +187,7 @@ export default class Navbar extends Component {
               <div
                 className={`form-check form-switch text-${
                   this.props.mode === "dark" ? "white" : "dark"
-                } `}
+                } fw-bold `}
               >
                 <input
                   className="form-check-input"

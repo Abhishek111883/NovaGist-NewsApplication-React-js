@@ -3,6 +3,7 @@ import NewsItem from "./NewsItem";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Carasoul from "./Carasoul";
 
 export default class News extends Component {
   constructor() {
@@ -12,6 +13,7 @@ export default class News extends Component {
       page: 1,
       isLoading: false,
       totalresults: 0,
+      carouselImages: [], // Store images for carousel
     };
   }
 
@@ -26,7 +28,6 @@ export default class News extends Component {
       prevProps.category !== this.props.category
     ) {
       await this.fetchNews();
-      // Fetch news using the updated country prop
       document.title = `NovaGist - ${this.props.category}`;
     }
   }
@@ -40,7 +41,6 @@ export default class News extends Component {
     this.props.setprogress(10);
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=10`;
     console.log(this.props.country);
-    console.log(this.props.apiKey);
     this.setState({ isLoading: true });
     let data = await fetch(url);
     this.props.setprogress(30);
@@ -76,6 +76,7 @@ export default class News extends Component {
 
   render() {
     const { mode } = this.props;
+    const { news } = this.state;
 
     return (
       <>
@@ -125,6 +126,8 @@ export default class News extends Component {
             </h3>
           </div>
         </div>
+
+        <Carasoul news={news} />
 
         <InfiniteScroll
           dataLength={this.state.news.length}

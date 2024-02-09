@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class News extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       news: [], // Initialize the state
       page: 1,
@@ -27,6 +27,7 @@ export default class News extends Component {
     ) {
       await this.fetchNews();
       // Fetch news using the updated country prop
+      document.title = `NovaGist - ${this.props.category}`;
     }
   }
 
@@ -55,8 +56,12 @@ export default class News extends Component {
   };
 
   fetchMoreData = async () => {
+    let url = `https://newsapi.org/v2/top-headlines?country=${
+      this.props.country
+    }&category=${this.props.category}&apiKey=${this.props.apikey}&page=${
+      this.state.page + 1
+    }&pageSize=10`;
     this.setState({ page: this.state.page + 1 });
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=10`;
     console.log(this.props.country);
     this.setState({ isLoading: true });
     let data = await fetch(url);
@@ -75,9 +80,11 @@ export default class News extends Component {
     return (
       <>
         <h1
-          className="text-center my-4"
+          className="text-center "
           style={{
             color: mode === "dark" ? "white" : "black",
+            marginTop: "70px",
+            fontWeight: "bold",
           }}
         >
           Top-Headlines from {this.props.category}
@@ -166,5 +173,5 @@ News.propTypes = {
   category: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   setprogress: PropTypes.func,
-  apikey: PropTypes.string.isRequired,
+  apikey: PropTypes.string,
 };

@@ -47,7 +47,7 @@ export default class Navbar extends Component {
     return (
       <div>
         <nav
-          className={`navbar nav navbar-expand-lg bg-${this.props.mode} navbar-${this.props.mode}`}
+          className={`navbar fixed-top navbar-expand-lg bg-${this.props.mode} navbar-${this.props.mode}`}
           id="nav"
         >
           <div className="container-fluid">

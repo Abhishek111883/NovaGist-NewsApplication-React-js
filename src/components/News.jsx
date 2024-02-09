@@ -31,9 +31,15 @@ export default class News extends Component {
   }
 
   fetchNews = async () => {
+    News.propTypes = {
+      apiKey: PropTypes.string.isRequired,
+      // other prop types...
+    };
+
     this.props.setprogress(10);
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=929948cf19164f63b1795a3be43e1e46&page=${this.state.page}&pageSize=10`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=10`;
     console.log(this.props.country);
+    console.log(this.props.apiKey);
     this.setState({ isLoading: true });
     let data = await fetch(url);
     this.props.setprogress(30);
@@ -50,7 +56,7 @@ export default class News extends Component {
 
   fetchMoreData = async () => {
     this.setState({ page: this.state.page + 1 });
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=929948cf19164f63b1795a3be43e1e46&page=${this.state.page}&pageSize=10`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=10`;
     console.log(this.props.country);
     this.setState({ isLoading: true });
     let data = await fetch(url);
@@ -78,7 +84,12 @@ export default class News extends Component {
         </h1>
         <div className="d-flex justify-content-between my-3 mx-2">
           <div className="categoryfrombottom">
-            <h3 className="text-danger display-line">
+            <h3
+              className="text-danger display-line"
+              style={{
+                fontWeight: "bold",
+              }}
+            >
               Category:{" "}
               <span
                 style={{
@@ -90,7 +101,12 @@ export default class News extends Component {
             </h3>
           </div>
           <div className="countryfrombottom">
-            <h3 className="text-danger display-line">
+            <h3
+              className="text-danger display-line"
+              style={{
+                fontWeight: "bold",
+              }}
+            >
               Country:{" "}
               <span
                 style={{
@@ -150,4 +166,5 @@ News.propTypes = {
   category: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   setprogress: PropTypes.func,
+  apikey: PropTypes.string.isRequired,
 };

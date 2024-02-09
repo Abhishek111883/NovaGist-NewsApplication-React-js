@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
+  apikey = import.meta.env.VITE_API_KEY;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -86,6 +88,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="general"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />
@@ -98,6 +101,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="business"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />
@@ -109,6 +113,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="entertainment"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />
@@ -120,6 +125,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="health"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />
@@ -131,6 +137,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="science"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />
@@ -142,6 +149,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="sports"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />
@@ -153,6 +161,7 @@ export default class App extends Component {
                   country={this.state.country}
                   category="technology"
                   setprogress={this.handleProgress}
+                  apikey={this.apikey}
                 />
               }
             />

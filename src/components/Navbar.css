@@ -1,4 +1,4 @@
-div > nav :hover {
+#nav :hover {
   color: white;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.18s ease-in-out;
 }

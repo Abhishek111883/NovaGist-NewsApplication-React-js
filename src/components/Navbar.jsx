@@ -48,6 +48,7 @@ export default class Navbar extends Component {
       <div>
         <nav
           className={`navbar nav navbar-expand-lg bg-${this.props.mode} navbar-${this.props.mode}`}
+          id="nav"
         >
           <div className="container-fluid">
             <a className="navbar-brand " href="#">

@@ -9,9 +9,9 @@ export default class Carasoul extends Component {
     const filteredNews = news.filter((item) => !!item.urlToImage);
 
     // Check if filteredNews array is empty
-    if (filteredNews.length === 0) {
-      return null; // Return null if no articles with valid urlToImage
-    }
+    // if (filteredNews.length === 0) {
+    //   return null; // Return null if no articles with valid urlToImage
+    // }
 
     return (
       <div>
@@ -30,7 +30,7 @@ export default class Carasoul extends Component {
             {filteredNews.map((image, index) => (
               <div
                 key={index}
-                className={` carousel-item ${index === 0 ? "active" : ""}  `}
+                className={`carousel-item ${index === 0 ? "active" : ""}`}
               >
                 <img
                   src={image.urlToImage}
@@ -45,16 +45,16 @@ export default class Carasoul extends Component {
             ))}
           </div>
           <button
-            className="carousel-control-prev "
+            className="carousel-control-prev"
             type="button"
             data-bs-target="#carouselExampleControls"
             data-bs-slide="prev"
           >
             <span
-              className="carousel-control-prev-icon "
+              className="carousel-control-prev-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden ">Previous</span>
+            <span className="visually-hidden">Previous</span>
           </button>
           <button
             className="carousel-control-next"
@@ -75,5 +75,9 @@ export default class Carasoul extends Component {
 }
 
 Carasoul.propTypes = {
-  news: PropTypes.array.isRequired,
+  news: PropTypes.arrayOf(
+    PropTypes.shape({
+      urlToImage: PropTypes.string.isRequired,
+    })
+  ),
 };

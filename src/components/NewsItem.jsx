@@ -5,9 +5,9 @@ export default class NewsItem extends Component {
   render() {
     const { title, mydesc, imgSrc, linkUrl, Author, date } = this.props;
     const truncatedTitle =
-      title && title.length > 100 ? title.substring(0, 100) + "..." : title;
+      title && title.length > 75 ? title.substring(0, 75) + "..." : title;
     const truncatedDesc =
-      mydesc && mydesc.length > 200 ? mydesc.substring(0, 150) + "..." : mydesc;
+      mydesc && mydesc.length > 100 ? mydesc.substring(0, 100) + "..." : mydesc;
 
     return (
       <div>

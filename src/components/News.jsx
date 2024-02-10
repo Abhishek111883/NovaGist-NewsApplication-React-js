@@ -3,11 +3,12 @@ import NewsItem from "./NewsItem";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash";
 import Carasoul from "./Carasoul";
 
 export default class News extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       news: [], // Initialize the state
       page: 1,
@@ -15,6 +16,7 @@ export default class News extends Component {
       totalresults: 0,
       carouselImages: [], // Store images for carousel
     };
+    this.fetchNewsDebounced = _.debounce(this.fetchNews, 300); // debounce fetchNews function
   }
 
   async componentDidMount() {
@@ -27,7 +29,7 @@ export default class News extends Component {
       prevProps.country !== this.props.country ||
       prevProps.category !== this.props.category
     ) {
-      await this.fetchNews();
+      this.fetchNewsDebounced(); // trigger debounced fetchNews function
       document.title = `NovaGist - ${this.props.category}`;
     }
   }
@@ -39,7 +41,7 @@ export default class News extends Component {
     };
 
     this.props.setprogress(10);
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=10`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=20`;
     console.log(this.props.country);
     this.setState({ isLoading: true });
     let data = await fetch(url);
@@ -60,7 +62,7 @@ export default class News extends Component {
       this.props.country
     }&category=${this.props.category}&apiKey=${this.props.apikey}&page=${
       this.state.page + 1
-    }&pageSize=10`;
+    }&pageSize=20`;
     this.setState({ page: this.state.page + 1 });
     console.log(this.props.country);
     this.setState({ isLoading: true });
@@ -134,6 +136,7 @@ export default class News extends Component {
           next={this.fetchMoreData}
           hasMore={this.state.news.length < this.state.totalresults}
           loader={<Spinner />}
+          endMessage={"No more articles"}
         >
           <div className="container-fluid ">
             <div className="row g-4 ">
